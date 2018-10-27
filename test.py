@@ -75,7 +75,7 @@ def jpg_to_gif(input_image, input_filename):
         append_images=images[1:],
         optimize=False,
         duration=input_image.info["duration"],
-        loop=1)
+        loop=0)
 
 
 def main():
@@ -140,3 +140,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # input_gif = Image.open("test_img/demo_ori.gif")
+    # jpg_to_gif(input_gif, "demo_ori.gif")
