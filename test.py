@@ -59,10 +59,11 @@ for files in os.listdir(opt.input_dir):
     input_image = transforms.ToTensor()(input_image).unsqueeze(0)
     # preprocess, (-1, 1)
     input_image = -1 + 2 * input_image
-    if opt.gpu > -1:
-        input_image = Variable(input_image, volatile=True).cuda()
-    else:
-        input_image = Variable(input_image, volatile=True).float()
+    with torch.no_grad():
+        if opt.gpu > -1:
+            input_image = Variable(input_image).cuda()
+        else:
+            input_image = Variable(input_image).float()
     # forward
     output_image = model(input_image)
     output_image = output_image[0]
